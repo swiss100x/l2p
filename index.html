@@ -110,6 +110,7 @@ label.q{font-weight:600;font-size:16px}
 .dot{position:absolute;width:20px;height:20px;border-radius:50%;background:var(--stamp);transition:left .8s cubic-bezier(.3,.7,.2,1),top .8s cubic-bezier(.3,.7,.2,1)}
 .dot.me{outline:2px dashed var(--ink);outline-offset:3px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+button.chip:disabled{cursor:default}button.chip:disabled[aria-pressed=false]{opacity:.45}
 </style>
 
 </head>
@@ -239,9 +240,9 @@ moment(){const M=[['a','Nice. Send me the prompt and I will try it on a few of m
  const qb=$('div',{class:'out'});const inner=$('div',{class:'reply'});qb.appendChild(inner);
  inner.appendChild($('h3',{},'How do you reply?'));
  const ch=$('div',{class:'chips'});const ref=$('div',{class:'out'});
- M.forEach((m,i)=>{const b=$('button',{class:'chip',type:'button','aria-pressed':S.mv===i},m[1]);b.onclick=()=>{S.mv=i;[...ch.children].forEach((c,j)=>c.setAttribute('aria-pressed',j===i));
+ M.forEach((m,i)=>{const b=$('button',{class:'chip',type:'button','aria-pressed':S.mv===i},m[1]);b.onclick=()=>{S.mv=i;keep();[...ch.children].forEach((c,j)=>{c.setAttribute('aria-pressed',j===i);c.disabled=j!==i});
   mine.innerHTML='<span class="vh">You: </span>'+m[1];mine.hidden=false;
-  ref.innerHTML='<div class="refl"><h3>'+m[3]+'</h3><p>'+m[2]+'</p></div>';ref.classList.add('on');const nx=document.getElementById('next');if(nx)nx.disabled=false};ch.appendChild(b)});
+  ref.innerHTML='<div class="refl"><h3>'+m[3]+'</h3><p>'+m[2]+'</p><p class="soft" style="font-size:14.5px">Your reply is locked in.</p></div>';ref.classList.add('on');const nx=document.getElementById('next');if(nx)nx.disabled=false};ch.appendChild(b)});
  inner.appendChild(ch);ph.appendChild(qb);card.appendChild(ref);const n=next('Continue',()=>{queue('before',{q1:S.q1,q2:S.q2,q3:S.q3,q4:S.q4,q5:S.q5,note:S.note,mv:S.mv});go(S.step+1)});n.disabled=S.mv===null;card.appendChild(n);
  const all=()=>{th.innerHTML='';bub.forEach(b=>th.appendChild(b));th.appendChild(mine);qb.classList.add('on');S.op=2};
  const fresh=S.op===1&&S.mv===null&&!(window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches);
