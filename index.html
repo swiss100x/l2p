@@ -166,6 +166,7 @@ p.q{font-weight:600;font-size:16px}
 .comp .fld{flex:1;min-width:0;border:1.5px solid var(--line);border-radius:99px;padding:6px 14px;font-size:15px;color:var(--grey);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;height:34px;line-height:19px}
 .comp .fld.go{color:var(--ink)}.comp .fld.go .phd{display:none}
 .reply .once{font-size:14px;margin:-2px 0 2px}.tkstub .link[data-cpc]{align-self:flex-start;min-height:44px}.rcpt .link{min-height:0}
+.phd{color:#6B746D!important}
 </style>
 
 </head>
@@ -218,7 +219,7 @@ let flushing=false;
 async function flush(){if(!LIVE||flushing)return;const b0=store.get('l2p_outbox')||[];if(!b0.length)return;if(b0.some(x=>!x.id)){b0.forEach(x=>{if(!x.id)x.id=uid()});store.set('l2p_outbox',b0)}flushing=true;setSave('sending');
  for(;;){const box=store.get('l2p_outbox')||[];if(!box.length)break;const it=box[0];
   try{await rpc('save_answers',{p_code:it.code,p_stage:it.stage,p_answers:it.answers});drop(it.id);confirmSent(it);refresh()}
-  catch(e){if(e.server&&/journey_closed|code_unknown|code_invalid|stage_invalid|answers_/.test(e.message)){drop(it.id);flushing=false;setSave('rejected');return}
+  catch(e){if(e.server&&(/journey_closed|code_unknown|code_invalid|stage_invalid|answers_/.test(e.message)||(/^[a-z][a-z_]*[a-z]$/.test(e.message)&&!/^http_/.test(e.message)))){drop(it.id);flushing=false;setSave('rejected');return}
    flushing=false;setSave('waiting');setTimeout(flush,15000);return}}
  flushing=false;setSave('saved')}
 window.addEventListener('online',flush);
@@ -228,7 +229,7 @@ const app=document.getElementById('app');
 const SKEY='l2p_state_'+INVITE;
 const KEEP_DAYS=0; /* days a finished reflection stays on this device so a reload can show it again. Set to 0 to keep nothing. */
 function keep(){if(!LIVE||!INVITE)return;if(S.step===STEPS.length-1){if(!S.fin)S.fin=Date.now();store.set(SKEY,KEEP_DAYS?{step:S.step,q2:S.q2,q4:S.q4,q5:S.q5,fin:S.fin}:{step:S.step,fin:S.fin})}else store.set(SKEY,S)}
-const go=n=>{S.step=Math.max(0,Math.min(STEPS.length-1,n));keep();render();window.scrollTo(0,0);landed()};
+/* A quick second tap on Continue or Skip must not land on the next screen's buttons, which sit in the same place. */ let tapGuard=0; app.addEventListener('click',e=>{if(Date.now()<tapGuard&&e.target.closest&&e.target.closest('button')){e.preventDefault();e.stopPropagation()}},true); const go=n=>{S.step=Math.max(0,Math.min(STEPS.length-1,n));if(STEPS[S.step]==='feedback'||STEPS[S.step]==='summary')tapGuard=Date.now()+900;keep();render();window.scrollTo(0,0);landed()};
 function landed(){const h=app.querySelector('h1,h2');if(h){h.setAttribute('tabindex','-1');try{h.focus({preventScroll:true})}catch(e){}}}
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')keep()});
 window.addEventListener('pagehide',keep);
