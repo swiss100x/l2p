@@ -111,11 +111,66 @@ label.q{font-weight:600;font-size:16px}
 .dot.me{outline:2px dashed var(--ink);outline-offset:3px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 button.chip:disabled{cursor:default}button.chip:disabled[aria-pressed=false]{opacity:.45}
+
+/* ---- pre-launch changes, 17 November 2026 ---- */
+body{padding-bottom:calc(112px + env(safe-area-inset-bottom,0px))}
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:10;display:flex;gap:10px;padding:12px max(18px,env(safe-area-inset-right,0px),calc((100vw - 460px)/2)) calc(12px + env(safe-area-inset-bottom,0px)) max(18px,env(safe-area-inset-left,0px),calc((100vw - 460px)/2));background:rgba(255,255,255,.94);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-top:1.5px solid var(--line)}
+.dock .btn{flex:0 0 auto;min-width:0;padding:10px 16px}
+.dock .btn.main{flex:1 1 auto}
+.btn,.chip,.link{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.btn,.chip{transition:transform .1s ease-out}
+.btn:active:not([disabled]),.chip:active:not([disabled]){transform:scale(.98)}
+.btn.main[disabled]{opacity:1;background:var(--sheet);border-color:var(--line);color:var(--soft)}
+[tabindex="-1"]:focus{outline:none}
+p.q{font-weight:600;font-size:16px}
+.dots{display:grid;grid-template-columns:repeat(10,14px);justify-content:space-between;row-gap:10px;padding:2px}
+.dots i{width:14px;height:14px;border-radius:50%;border:1.5px solid var(--grey);transition:background .25s,border-color .25s}
+.dots i.on{background:var(--stamp);border-color:var(--stamp)}
+.phone.tap{cursor:pointer}
+.reply h3{font:600 15px "Inter Tight",sans-serif;letter-spacing:0;color:var(--soft)}
+.reply .chip.sug{border-color:var(--stamp);border-radius:16px 16px 5px 16px;color:var(--stampd)}
+.rcpt{align-self:flex-end;font-size:13px;color:var(--soft);padding-right:4px;margin-top:-2px}
+.refl{border-left-color:var(--ink);scroll-margin-bottom:128px}
+.stamps{display:flex;gap:10px;margin-top:14px}
+.stamps svg{width:84px;height:84px;flex:none;display:block}
+.ticket.mini .stamps svg{width:66px;height:66px}.ticket.mini .stamps{margin-top:12px}
+.ticket:not(.mini) .tktop{min-height:0}.ticket:not(.mini) .tkh,.ticket:not(.mini) .tkp{max-width:none}
+@media (prefers-reduced-motion:reduce){.dots i{transition-delay:0s!important}}
+
+/* ---- the message from Sam, as a messaging app in CI's own style ---- */
+.phone{padding:10px 0 0;gap:0;overflow:hidden}
+.pstat{padding:2px 20px 8px}
+.lock{padding:18px 0 10px}
+.phone .note{margin:0 12px 16px}
+.who{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-size:13.5px;color:var(--soft)}.who b{color:var(--ink);font-weight:600;font-size:15px}
+.chead{background:#fff;border-bottom:1.5px solid var(--line);padding:8px 14px 10px;gap:10px}
+.chev{flex:none}
+.cname{display:flex;flex-direction:column;line-height:1.2}.cname b{font-size:16px}.sub{font-size:12.5px;color:var(--soft)}
+.thread{padding:12px 12px 6px;gap:6px}
+.day{align-self:center;font-size:12px;color:var(--soft);background:#fff;border-radius:99px;padding:2px 10px;margin-bottom:4px;box-shadow:0 1px 1px rgba(27,33,29,.08)}
+.msg{border:0;border-radius:18px 18px 18px 6px;box-shadow:0 1px 1.5px rgba(27,33,29,.14);padding:9px 12px 7px;max-width:86%;line-height:1.38}
+.msg.me{border-radius:18px 18px 6px 18px;box-shadow:none}
+.msg.typing{padding:13px 14px}
+.ts{float:right;font-size:11px;line-height:1;color:var(--soft);margin:9px 0 0 10px}
+.msg.me .ts{color:rgba(255,255,255,.78)}
+.msg.me.in{animation-delay:.18s}
+.rcpt{padding-right:6px;margin-top:0}
+.rcpt.in{animation:rise .3s ease .35s both}
+.reply{border-top:0;padding:8px 12px 12px;gap:8px}
+.reply h3{padding-left:2px}
+.reply .chips{align-items:flex-end;gap:8px}
+.reply .chip.sug{max-width:94%;min-height:44px;background:#fff;border-radius:18px 18px 6px 18px;padding:10px 13px;font-size:15.5px;line-height:1.38;box-shadow:0 1px 1.5px rgba(27,33,29,.10)}
+.comp{display:flex;align-items:center;gap:8px;background:#fff;border-top:1.5px solid var(--line);padding:8px 10px 10px}
+.comp .plus,.comp .send{flex:none;width:32px;height:32px;border-radius:50%;display:grid;place-items:center}
+.comp .send{background:var(--stamp)}
+.comp .fld{flex:1;min-width:0;border:1.5px solid var(--line);border-radius:99px;padding:6px 14px;font-size:15px;color:var(--grey);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;height:34px;line-height:19px}
+.comp .fld.go{color:var(--ink)}.comp .fld.go .phd{display:none}
+.reply .once{font-size:14px;margin:-2px 0 2px}.tkstub .link[data-cpc]{align-self:flex-start;min-height:44px}.rcpt .link{min-height:0}
 </style>
 
 </head>
 <body>
-<div id="app"></div>
+<main id="app"></main>
 <script>
 const D={"ba": {"safe": [[1, 2], [2, 2], [1, 2], [1, 2], [1, 2], [1, 2], [2, 2], [1, 2], [2, 1], [1, 2], [2, 2], [1, 2], [2, 2], [2, 2], [1, 2], [1, 1]], "critical": [[0, 2], [2, 2], [1, 2], [1, 2], [2, 1], [0, 1], [2, 1], [0, 1], [1, 2], [1, 2], [0, 1], [2, 2], [2, 2], [1, 1], [0, 1], [1, 2]], "problem": [[0, 1], [0, 2], [2, 2], [2, 2], [1, 2], [0, 1], [1, 2], [1, 1], [0, 1], [0, 2], [1, 2], [2, 1], [1, 1], [1, 1], [0, 2], [1, 2]]}, "lad": {"g": {"right": 4, "wrong": 11}, "f": {"right": 10, "wrong": 14}, "c": {"right": 9, "wrong": 6}}, "stats": {"safe": {"both": 7, "gap": 8, "luck": 3, "neither": 0}, "critical": {"both": 5, "gap": 3, "luck": 4, "neither": 6}, "problem": {"both": 3, "gap": 7, "luck": 1, "neither": 7}}, "mission": {"checks": 4, "brief": 3, "spot": 5, "redesign": 1, "route": 3, "null": 2}, "n": 18},LOGO="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjMzMyAxNDUgNTgzIDg3OCIgeG1sbnM6YzJwYT0iaHR0cDovL2MycGEub3JnL21hbmlmZXN0Ij48cGF0aCBmaWxsPSIjMjM1YTNjIiBkPSJNNTgwLjUgNzgwLjBDNTUwLjEgNzc1LjQgNTIwLjcgNzY1LjcgNDkyLjAgNzUwLjlDNDUxLjEgNzI5LjcgNDE3LjAgNjk4LjYgMzg4LjkgNjU2LjVDMzM4LjYgNTgxLjMgMzIyLjAgNDcyLjUgMzQ2LjEgMzc1LjVDMzU3LjUgMzI5LjYgMzc4LjMgMjg2LjkgNDA2LjggMjUxLjBDNDE3LjEgMjM4LjEgNDQyLjMgMjEzLjIgNDU0LjUgMjAzLjlDNDg2LjIgMTc5LjggNTE4LjQgMTY0LjUgNTU3LjQgMTU0LjlDNTcwLjcgMTUxLjcgNTkzLjggMTQ4LjIgNjA0LjQgMTQ3LjlMNjExLjMgMTQ3LjdMNjExLjIgMTU5LjVMNjExLjEgMTcxLjRMNjA0LjMgMTcyLjZDNTkxLjMgMTc0LjggNTgxLjQgMTc4LjEgNTY4LjUgMTg0LjVDNTUyLjEgMTkyLjYgNTQ0LjYgMTk4LjIgNTI5LjUgMjEzLjRDNTE0LjcgMjI4LjQgNTA0LjYgMjQyLjYgNDkzLjUgMjY0LjNDNDc3LjIgMjk2LjAgNDY3LjAgMzI2LjIgNDU5LjUgMzY0LjlDNDQ3LjMgNDI4LjMgNDQ4LjIgNTA5LjYgNDYyLjEgNTc5LjRDNDczLjMgNjM1LjQgNDk1LjUgNjgyLjggNTI2LjAgNzE1LjNDNTQ1LjQgNzM2LjAgNTcyLjcgNzUxLjcgNTk2LjggNzU2LjBMNjA0LjAgNzU3LjNMNjA0LjAgNzY5LjdMNjA0LjAgNzgyLjBMNTk4LjIgNzgxLjlDNTk1LjEgNzgxLjkgNTg3LjEgNzgxLjAgNTgwLjUgNzgwLjBaTTYzMC4wIDc2OS4yTDYzMC4wIDc1Ni41TDYzNS44IDc1NS4xQzY0Mi44IDc1My41IDY1Ny42IDc0Ny4zIDY2NS43IDc0Mi42QzY3OS42IDczNC41IDY5NS40IDcyMC45IDcwOC4zIDcwNi4wTDcxNC4wIDY5OS41TDcxMy43IDczMS4wTDcxMy41IDc2Mi41TDY5OS43IDc2Ny4xQzY3OC43IDc3NC4yIDY0My41IDc4Mi4wIDYzMi44IDc4Mi4wTDYzMC4wIDc4Mi4wTDYzMC4wIDc2OS4yWk03NzMuMCAyNzcuNEM3NzIuNCAyNzYuMCA3NzIuMCAyNzQuNCA3NzIuMCAyNzMuOEM3NzIuMCAyNzEuNSA3NjQuNyAyNTQuNyA3NjAuNCAyNDcuMUM3MzYuOSAyMDUuMiA2OTMuOSAxNzYuMSA2NDkuNyAxNzIuMUw2NDIuNSAxNzEuNUw2NDIuNSAxNTkuNUw2NDIuNSAxNDcuNUw2NTEuMCAxNDcuOEM2NjIuMCAxNDguMyA2ODEuNSAxNTEuMiA2OTYuNCAxNTQuNUM3MTMuMSAxNTguMyA3MzAuMiAxNjMuOSA3NTUuNiAxNzQuMEM3ODQuNSAxODUuNiA3ODcuMCAxODYuMyA3OTguMyAxODUuOEM4MDcuNCAxODUuNSA4MDcuNSAxODUuNSA4MDguNCAxODguMkM4MDkuMiAxOTAuNCA4MDguOCAxOTEuNiA4MDYuMiAxOTUuN0M3OTQuNiAyMTMuNyA3ODUuOSAyNDEuMiA3ODIuOSAyNjguOEw3ODEuNyAyODAuMEw3NzcuOCAyODAuMEM3NzQuNiAyODAuMCA3NzMuOCAyNzkuNiA3NzMuMCAyNzcuNFoiLz48cGF0aCBmaWxsPSIjY2Y3YTM3IiBkPSJNNjg2LjAgMTAxMy42TDY4Ni4wIDEwMDUuM0w2OTMuOCAxMDA0LjZDNzA5LjUgMTAwMy4zIDcyMy4xIDk5OC4xIDczMi40IDk4OS44Qzc0My43IDk3OS44IDc0OC42IDk2Ny40IDc1MC4xIDk0NS42Qzc1MS4yIDkyNy43IDc1MS4yIDQ1My43IDc1MC4wIDQzNS4xQzc0OS4wIDQxOS44IDc0Ny4yIDQxMS41IDc0My4wIDQwMi40QzczNS4yIDM4Ni4wIDcxOS41IDM3Ni40IDY5Ni44IDM3NC4wQzY5MS43IDM3My41IDY4Ny4yIDM3My4wIDY4Ni44IDM3My4wQzY4Ni4zIDM3My4wIDY4Ni4wIDM2OS40IDY4Ni4wIDM2NS4wTDY4Ni4wIDM1Ny4wTDY5NC4yIDM1Ny4wQzY5OC44IDM1Ny4wIDc1MC4yIDM1Ny4wIDgwOC41IDM1Ni45TDkxNC41IDM1Ni45TDkxNC44IDM2NC44TDkxNS4xIDM3Mi43TDkwNC44IDM3My45Qzg3NC45IDM3Ny41IDg1OS45IDM4OS45IDg1Mi44IDQxNy4wTDg1MC41IDQyNS41TDg1MC41IDY5MC41Qzg1MC41IDk0MS43IDg1MC42IDk1NS44IDg1Mi4zIDk2Mi4wQzg1Ni41IDk3Ny4yIDg2NC40IDk4OC40IDg3Ni4wIDk5NS41Qzg4My4wIDk5OS43IDg5Ny4xIDEwMDMuOSA5MDcuMiAxMDA0LjdMOTE1LjAgMTAwNS4zTDkxNS4wIDEwMTMuNkw5MTUuMCAxMDIyLjBMODAwLjUgMTAyMi4wTDY4Ni4wIDEwMjIuMEw2ODYuMCAxMDEzLjZaIi8+PC9zdmc+";
 const $=(t,a={},h='')=>{const e=document.createElement(t);for(const k in a){if(k==='on')for(const n in a.on)e.addEventListener(n,a.on[n]);else if(k==='class')e.className=a[k];else e.setAttribute(k,a[k])}if(typeof h==='string')e.innerHTML=h;else if(h)[].concat(h).forEach(c=>c&&e.appendChild(c));return e};
@@ -127,7 +182,7 @@ const BACKEND={url:'https://niobpbtaaojurhppkmpi.supabase.co',key:'sb_publishabl
 const ICO_NUMBER='C2088950'; /* paste the ICO registration number here, e.g. 'ZB123456' */
 const LIVE=!!(BACKEND.url&&BACKEND.key);
 const INVITE=(new URLSearchParams(location.search).get('c')||'').trim();
-const store={get(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const MEM={};const store={get(k){if(k in MEM)return JSON.parse(MEM[k]);try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},set(k,v){MEM[k]=JSON.stringify(v);try{localStorage.setItem(k,MEM[k])}catch(e){}}};
 const JKEY='l2p_journey_'+INVITE;
 let CODE=LIVE?(INVITE?store.get(JKEY):null):(()=>{const A='ABCDEFGHJKMNPQRSTUVWXYZ23456789',r=new Uint32Array(16);(window.crypto||{getRandomValues:a=>a.forEach((_,i)=>a[i]=Math.random()*4e9)}).getRandomValues(r);const c=[...r].map(x=>A[x%A.length]).join('');return c.slice(0,4)+'-'+c.slice(4,8)+'-'+c.slice(8,12)+'-'+c.slice(12)})();
 async function rpc(fn,args){
@@ -141,26 +196,40 @@ async function rpc(fn,args){
 const START_ERRORS={invite_invalid:'This session link does not work. Ask your facilitator for the link again.',cohort_closed:'This session is closed to new people.',cohort_not_open:'This session has not opened yet.',cohort_full:'This session is full. Let your facilitator know.',network:'We could not connect. Check your signal and try again.'};
 /* Outbox: answers wait here until the server confirms them, so nothing is lost on a bad signal. */
 let SAVE={state:'idle'};
-function setSave(st){SAVE.state=st;const el=document.getElementById('savestate');if(el)el.replaceWith(saveLine())}
+function setSave(st){SAVE.state=st;const el=document.getElementById('savestate');if(el)el.replaceWith(saveLine());refresh()}
+/* The line under the reply in Sam's chat. It says saved only once the server has confirmed the 'before' answers. */
+let RCEL=null;
+function refresh(){const r=document.getElementById('rcpt')||RCEL;if(!r)return;let t,retry=false;
+ if(!LIVE)t='Your first reply is recorded.';else if(isSent('before'))t='Your first reply has been saved.';else if(SAVE.state==='rejected')t='This journey can no longer accept answers. Your record below is still yours.';else if(SAVE.state==='waiting'){t='Not saved yet. Keep this page open and retry when connected.';retry=true}else t='Your first reply is recorded. Saving…';
+ if(r.dataset.t===t)return;r.dataset.t=t;r.textContent=t;if(retry){r.appendChild(document.createTextNode(' '));r.appendChild($('button',{class:'link',type:'button',on:{click:flush}},'Try again now'))}}
 function saveLine(){const t={idle:'',sending:'Saving your answers…',saved:'Your answers are saved under your journey code.',waiting:'Not saved yet. We will keep trying while this page is open.',rejected:'This journey can no longer accept answers. Your record below is still yours.'}[SAVE.state];
  const p=$('p',{id:'savestate',class:'soft',role:'status',style:'font-size:14.5px'},t||'');
  if(SAVE.state==='waiting'){const b=$('button',{class:'link',type:'button',on:{click:flush}},'Try again now');p.appendChild(document.createTextNode(' '));p.appendChild(b)}
  return p}
-function queue(stage,answers){if(!LIVE||!CODE)return;const box=(store.get('l2p_outbox')||[]).filter(x=>!(x.code===CODE&&x.stage===stage));box.push({code:CODE,stage,answers});store.set('l2p_outbox',box);flush()}
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,8);
+const sentList=c=>c?(store.get('l2p_sent_'+c)||[]):[];
+function isSent(st){return sentList(CODE).includes(st)}
+function queue(stage,answers){if(!LIVE||!CODE)return;const box=(store.get('l2p_outbox')||[]).filter(x=>!(x.code===CODE&&x.stage===stage));box.push({id:uid(),code:CODE,stage,answers});store.set('l2p_outbox',box);store.set('l2p_sent_'+CODE,sentList(CODE).filter(s=>s!==stage));refresh();flush()}
+function drop(id){store.set('l2p_outbox',(store.get('l2p_outbox')||[]).filter(x=>x.id!==id))}
+function confirmSent(it){if((store.get('l2p_outbox')||[]).some(x=>x.code===it.code&&x.stage===it.stage))return; /* a newer copy is still waiting */const a=sentList(it.code);if(!a.includes(it.stage)){a.push(it.stage);store.set('l2p_sent_'+it.code,a)}}
 let flushing=false;
-async function flush(){if(!LIVE||flushing)return;let box=store.get('l2p_outbox')||[];if(!box.length)return;flushing=true;setSave('sending');
- while(box.length){const it=box[0];
-  try{await rpc('save_answers',{p_code:it.code,p_stage:it.stage,p_answers:it.answers});box.shift();store.set('l2p_outbox',box)}
-  catch(e){if(e.server&&/journey_closed|code_unknown|code_invalid|stage_invalid|answers_/.test(e.message)){box.shift();store.set('l2p_outbox',box);flushing=false;setSave('rejected');return}
+/* One request at a time. The outbox is read again from storage before every send and items are removed by id,
+   so an answer added while a request is in flight is kept and sent next. */
+async function flush(){if(!LIVE||flushing)return;const b0=store.get('l2p_outbox')||[];if(!b0.length)return;if(b0.some(x=>!x.id)){b0.forEach(x=>{if(!x.id)x.id=uid()});store.set('l2p_outbox',b0)}flushing=true;setSave('sending');
+ for(;;){const box=store.get('l2p_outbox')||[];if(!box.length)break;const it=box[0];
+  try{await rpc('save_answers',{p_code:it.code,p_stage:it.stage,p_answers:it.answers});drop(it.id);confirmSent(it);refresh()}
+  catch(e){if(e.server&&/journey_closed|code_unknown|code_invalid|stage_invalid|answers_/.test(e.message)){drop(it.id);flushing=false;setSave('rejected');return}
    flushing=false;setSave('waiting');setTimeout(flush,15000);return}}
  flushing=false;setSave('saved')}
 window.addEventListener('online',flush);
 const S={step:0,q1:null,q2:null,q3:null,q4:null,q5:null,note:'',mv:null,rate:null,f1:'',f2:'',op:0};
-const STEPS=['welcome','privacy','q1','q2','q3','q4','q5','moment','summary','room','feedback','end'];
+const STEPS=['welcome','privacy','q1','q2','q3','q4','q5','moment','feedback','summary'];
 const app=document.getElementById('app');
 const SKEY='l2p_state_'+INVITE;
-function keep(){if(!LIVE||!INVITE)return;store.set(SKEY,STEPS[S.step]==='end'?{step:S.step}:S)}
-const go=n=>{S.step=Math.max(0,Math.min(STEPS.length-1,n));keep();render();window.scrollTo(0,0)};
+const KEEP_DAYS=0; /* days a finished reflection stays on this device so a reload can show it again. Set to 0 to keep nothing. */
+function keep(){if(!LIVE||!INVITE)return;if(S.step===STEPS.length-1){if(!S.fin)S.fin=Date.now();store.set(SKEY,KEEP_DAYS?{step:S.step,q2:S.q2,q4:S.q4,q5:S.q5,fin:S.fin}:{step:S.step,fin:S.fin})}else store.set(SKEY,S)}
+const go=n=>{S.step=Math.max(0,Math.min(STEPS.length-1,n));keep();render();window.scrollTo(0,0);landed()};
+function landed(){const h=app.querySelector('h1,h2');if(h){h.setAttribute('tabindex','-1');try{h.focus({preventScroll:true})}catch(e){}}}
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden')keep()});
 window.addEventListener('pagehide',keep);
 const Q={
@@ -173,10 +242,12 @@ function head(){const b=$('div',{class:'bar',role:'img','aria-label':'Step '+Mat
  return [$('div',{class:'top'},[$('span',{style:'display:flex;align-items:center;gap:10px'},'<img src="'+LOGO+'" alt="Clinically Intelligent"><span>Learning to Practice</span>'),$('span',{class:'proto'},LIVE?'Pilot':'Prototype, nothing is sent')]),b]}
 function codeLines(){const c=(CODE||'').split('-');return '<div class="code"><span>'+(c[0]||'')+'-'+(c[1]||'')+'<span class="vh">-</span></span><span>'+(c[2]||'')+'-'+(c[3]||'')+'</span></div>'}
 function stampSvg(cls,dash){return '<svg class="tkst" viewBox="0 0 120 120" aria-hidden="true"><g transform="rotate(-8 60 60)"><g class="'+cls+'"><circle cx="60" cy="60" r="52" fill="none" stroke="'+(dash?'#B8BEB7':'#235A3C')+'" stroke-width="'+(dash?2:3.4)+'"'+(dash?' stroke-dasharray="5 5"':'')+'/>'+(dash?'':'<circle cx="60" cy="60" r="45" fill="none" stroke="#235A3C" stroke-width="1.3"/>')+'<text x="60" y="'+(dash?66:58)+'" text-anchor="middle" font-family="Fraunces,serif" font-weight="600" font-size="19" fill="'+(dash?'#B8BEB7':'#235A3C')+'">Stop 1</text>'+(dash?'':'<text x="60" y="78" text-anchor="middle" font-family="Inter Tight,sans-serif" font-weight="600" font-size="11" fill="#235A3C">stamped</text>')+'</g></g></svg>'}
+function stampN(n,on,cls){const c=on?'#235A3C':'#B8BEB7';return '<svg viewBox="0 0 120 120"><g transform="rotate('+(on?-8:0)+' 60 60)"><g class="'+(cls||'')+'"><circle cx="60" cy="60" r="52" fill="none" stroke="'+c+'" stroke-width="'+(on?3.4:2)+'"'+(on?'':' stroke-dasharray="5 5"')+'/>'+(on?'<circle cx="60" cy="60" r="45" fill="none" stroke="#235A3C" stroke-width="1.3"/>':'')+'<text x="60" y="'+(on?58:67)+'" text-anchor="middle" font-family="Fraunces,serif" font-weight="600" font-size="'+(on?19:20)+'" fill="'+(on?'#235A3C':'#6E7870')+'">Stop '+n+'</text>'+(on?'<text x="60" y="78" text-anchor="middle" font-family="Inter Tight,sans-serif" font-weight="600" font-size="11" fill="#235A3C">stamped</text>':'')+'</g></g></svg>'}
+function stamps(done,cls){return '<div class="stamps" aria-hidden="true">'+[1,2,3].map(n=>stampN(n,n<=done,n===done?cls:'')).join('')+'</div>'}
 function back(){return S.step>0?$('button',{class:'link',on:{click:()=>go(S.step-1)}},'Back'):''}
 function chooser(key,opts,after){const w=$('div',{class:'chips',role:'group'});opts.forEach((o,i)=>{const b=$('button',{type:'button',class:'chip','aria-pressed':S[key]===i},o);b.onclick=()=>{S[key]=i;[...w.children].forEach((c,j)=>c.setAttribute('aria-pressed',j===i));const n=document.getElementById('next');if(n)n.disabled=false;if(after)after()};w.appendChild(b)});return w}
 function next(label,fn,ok){return $('button',{class:'btn main',id:'next',type:'button',on:{click:fn}},label)}
-function notice(){const s=$('div',{class:'sheet',role:'dialog','aria-label':'Privacy notice'});
+function notice(){const s=$('div',{class:'sheet',role:'dialog','aria-modal':'true','aria-label':'Privacy notice'});
  const f=t=>'<span class="fill">'+t+'</span>';
  s.innerHTML='<div class="in"><button class="link" id="cl">Close</button>'+(ICO_NUMBER?'':'<div class="warn"><b>Not final.</b> The ICO registration number must be added before this is used with real participants.</div>')+'<h2>How Clinically Intelligent uses your answers</h2>'+
  '<p class="soft">Notice version '+NOTICE+'</p>'+
@@ -192,16 +263,20 @@ function notice(){const s=$('div',{class:'sheet',role:'dialog','aria-label':'Pri
  '<h3>Your device</h3><p>Your device may store your journey code and unfinished answers so you can continue if you lose connection. We do not use advertising trackers or analytics cookies in this pilot.</p>'+
  '<h3>Suggestions and changes</h3><p>Any suggested learning actions are simple educational prompts. They are not formal competence assessments or decisions about your employment. If we materially change how we use your answers, we will update this notice and provide information as required.</p>'+
  '<button class="btn" id="cl2">Close</button></div>';
- const c=()=>s.remove();s.querySelector('#cl').onclick=c;s.querySelector('#cl2').onclick=c;document.body.appendChild(s);s.querySelector('#cl').focus()}
+ const op=document.activeElement;const c=()=>{s.remove();app.inert=false;app.removeAttribute('aria-hidden');if(op&&op.focus)try{op.focus()}catch(e){}};
+ s.addEventListener('keydown',e=>{if(e.key==='Escape'){e.preventDefault();c();return}if(e.key!=='Tab')return;const f=[...s.querySelectorAll('button')],a=f[0],z=f[f.length-1],on=document.activeElement;
+  if(!s.contains(on)){e.preventDefault();a.focus()}else if(e.shiftKey&&on===a){e.preventDefault();z.focus()}else if(!e.shiftKey&&on===z){e.preventDefault();a.focus()}});
+ s.querySelector('#cl').onclick=c;s.querySelector('#cl2').onclick=c;app.inert=true;app.setAttribute('aria-hidden','true'); /* the page behind cannot be reached while the notice is open */
+ document.body.appendChild(s);s.querySelector('#cl').focus()}
 async function startJourney(){if(!LIVE||CODE){go(2);return}
  const b=document.getElementById('startbtn'),er=document.getElementById('starterr');b.disabled=true;b.textContent='Starting…';er.textContent='';
  try{const r=await rpc('start_journey',{p_invite:INVITE,p_notice_version:NOTICE});CODE=r.code;store.set(JKEY,CODE);go(2)}
  catch(e){er.textContent=START_ERRORS[e.message]||'Something went wrong. Please try again.';b.disabled=false;b.textContent='Continue'}}
 function icon(p){return '<svg width="30" height="30" viewBox="0 0 30 30" fill="none" stroke="#235A3C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+p+'</svg>'}
 const SCREENS={
-welcome(){if(LIVE&&!INVITE)return [$('div',{class:'card'},[$('h1',{},'This link is not complete'),$('p',{style:'font-size:17px'},'Ask your facilitator for the session link or QR code. It is unique to your session.')])];return [$('div',{class:'card'},[$('h1',{},'Welcome to CI Learning to Practice'),$('p',{style:'font-size:17px'},'A short experience to help us understand your work, what you want to explore and how you approach a realistic AI decision. Your answers will help us shape your upcoming session. About five minutes.'),$('p',{class:'soft'},'This isn’t a test of clinical competence. Your answers help us understand where you’re starting.'),
- $('div',{class:'ticket mini','aria-hidden':'true'},'<div class="tktop"><div class="soft">Learning to Practice</div><div class="tkh">Your starting point</div><div class="ghost"><i></i><i></i></div>'+stampSvg('',true)+'</div><div class="perf"></div><div class="tkstub"><i></i></div>'),
- $('div',{class:'row'},[$('button',{class:'btn main',on:{click:()=>go(1)}},'Start'),$('button',{class:'btn',on:{click:notice}},'How we use your answers')])])]},
+welcome(){if(LIVE&&!INVITE)return [$('div',{class:'card'},[$('h1',{},'This link is not complete'),$('p',{style:'font-size:17px'},'Ask your facilitator for the session link or QR code. It is unique to your session.')])];return [$('div',{class:'card'},[$('h1',{},'Welcome to CI Learning to Practice'),$('p',{style:'font-size:17px'},'A short experience to help us understand your work, what you want to explore and how you approach a realistic AI decision. Your answers will help us shape your upcoming session. About five minutes.'),$('p',{class:'soft'},'This isn’t a test of clinical competence. Your answers help us understand where you’re starting.'),$('button',{class:'link',type:'button',on:{click:notice}},'How we use your answers'),
+ $('div',{class:'ticket mini','aria-hidden':'true'},'<div class="tktop"><div class="soft">Stop 1 of 3</div><div class="tkh">Your starting point</div>'+stamps(0)+'</div><div class="perf"></div><div class="tkstub"><i></i></div>'),$('p',{class:'vh'},'Stop 1 of 3.'),
+ $('button',{class:'btn main',type:'button',on:{click:()=>go(1)}},'Start')])]},
 privacy(){return [$('div',{class:'card'},[$('h2',{},'Your answers, in one glance'),
  $('div',{class:'glance'},[
   ['<path d="M4 15l7 7L26 7"/>','Taking part is optional. You can attend the workshop either way.'],
@@ -213,7 +288,8 @@ privacy(){return [$('div',{class:'card'},[$('h2',{},'Your answers, in one glance
  $('button',{class:'link',on:{click:notice}},'Read the full privacy notice'),
  $('p',{id:'starterr',class:'soft',role:'alert',style:'color:#A8480F'},''),$('button',{class:'btn main',id:'startbtn',on:{click:startJourney}},'Continue')]),back()]},
 q1(){const n=next('Next',()=>go(S.step+1));n.disabled=S.q1===null;
- return [$('div',{class:'card'},[$('div',{class:'soft'},'Question 1 of 5'),$('h2',{},Q.q1[0]),chooser('q1',Q.q1[1]),n]),back()]},
+ 
+ return [$('div',{class:'card'},[$('div',{class:'soft'},'Question 1 of 5'),$('h2',{},Q.q1[0].replace('the past four weeks','<span class="hl">the past four weeks</span>')),chooser('q1',Q.q1[1]),n]),back()]},
 q2(){const w=$('div',{},[]);const sc=$('div',{class:'scale',role:'group','aria-label':'Confidence from 1 to 5'});[1,2,3,4,5].forEach((n,i)=>{const b=$('button',{type:'button',class:'chip','aria-pressed':S.q2===i,'aria-label':n+(i===0?', not confident':i===4?', very confident':'')},''+n);b.onclick=()=>{S.q2=i;[...sc.children].forEach((c,j)=>c.setAttribute('aria-pressed',j===i));document.getElementById('next').disabled=false};sc.appendChild(b)});
  w.appendChild(sc);w.appendChild($('div',{class:'ends'},'<span>Not confident</span><span>Very confident</span>'));
  const n=next('Next',()=>go(S.step+1));n.disabled=S.q2===null;
@@ -223,58 +299,107 @@ q5(){const t=$('textarea',{maxlength:140,'aria-describedby':'cn',id:'note'},S.no
  const n=next('Next',()=>go(S.step+1));n.disabled=S.q5===null;
  return [$('div',{class:'card'},[$('div',{class:'soft'},'Question 5 of 5'),$('h2',{},Q.q5[0]),chooser('q5',Q.q5[1]),
   $('div',{style:'display:flex;flex-direction:column;gap:6px'},[$('label',{class:'q',for:'note'},'If you could make one part of your working day easier, what would it be? Optional'),$('p',{class:'soft'},'One sentence is enough. Do not include patient or colleague information.'),t,c]),n]),back()]},
-moment(){const M=[['a','Nice. Send me the prompt and I will try it on a few of my own letters too.','Sam has shared identifiable patient information with an unapproved AI tool. Encouraging this, or trying it yourself, could expose more patient information rather than address what has happened.','What this response misses'],['b','Delete the chat now, we will say no more about it and no harm is done.','Deleting the chat doesn’t guarantee the information has been removed. Your organisation needs to assess what happened and decide what action is needed through its usual reporting process.','What this response misses'],['c','Hold on. That includes identifiable patient information in an unapproved tool. Let’s stop using the chat and follow our organisation’s reporting process together.','The message includes identifiable patient information shared with an unapproved AI tool. The priority is to prevent further sharing, follow your organisation’s reporting process and support your colleague to address what happened. Deleting the chat alone may not resolve the issue.','Why this response helps'],['d','You should never use AI for anything a patient will read. Not ever, full stop.','This doesn’t address the patient information already shared. The immediate priority is to prevent further sharing and follow the organisation’s reporting process. Whether AI is appropriate depends on the tool, the task and local approval.','What this response misses']];
+moment(){const M=[['a','That sounds useful. Can you send me the prompt you used?','Sam has shared identifiable patient information with an unapproved AI tool. Encouraging this, or trying it yourself, could expose more patient information rather than address what has happened.','What this response misses'],['b','Let’s delete the chat now so the information isn’t there anymore.','Deleting the chat doesn’t guarantee the information has been removed. Your organisation needs to assess what happened and decide what action is needed through its usual reporting process.','What this response misses'],['c','Let’s stop using it and follow our reporting process together.','The message includes identifiable patient information shared with an unapproved AI tool. The priority is to prevent further sharing, follow your organisation’s reporting process and support your colleague to address what happened. Deleting the chat alone may not resolve the issue.','Why this response helps'],['d','I think we should avoid AI for patient letters altogether.','This doesn’t address the patient information already shared. The immediate priority is to prevent further sharing and follow the organisation’s reporting process. Whether AI is appropriate depends on the tool, the task and local approval.','What this response misses']];
  const T=['That clinic letter was far too wordy for my patient. I have been rewriting it all lunchtime.','So I pasted the real letter into the AI chatbot on my personal phone. Her name, address and diagnosis were all in it.','Ten seconds later: plain English, and it kept her goals in. Honestly, a bit of a miracle.'];
- const card=$('div',{class:'card'});card.innerHTML='<div><span class="tag">Fictional moment</span></div><h2>A message from Sam</h2><p class="soft">Thursday, 12:41. You are eating lunch at your desk. Your phone buzzes. Everything here is invented: no real patient, no real colleague. The chatbot Sam mentions is a personal app, not one your organisation has approved.</p>';
+ const locked=!S.op&&S.mv===null,RM=!!(window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches);
+ const card=$('div',{class:'card'});card.innerHTML='<div><span class="tag">Fictional moment</span></div><h2>A message from Sam</h2><p class="soft">'+(locked?'Thursday, 12:41. You are eating lunch at your desk. Your phone buzzes. ':'')+'Everything here is invented: no real patient, no real colleague. The chatbot Sam mentions is a personal app, not one your organisation has approved.</p>';
  const ph=$('div',{class:'phone'});card.appendChild(ph);
  const stat='<div class="pstat" aria-hidden="true"><span>12:41</span><svg width="44" height="12" viewBox="0 0 44 12" fill="#1B211D"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/><rect x="24.5" y="1" width="16" height="10" rx="3" fill="none" stroke="#1B211D" stroke-width="1.2"/><rect x="26.5" y="3" width="10" height="6" rx="1.5"/><rect x="41.5" y="4" width="2" height="4" rx="1"/></svg></div>';
- if(!S.op&&S.mv===null){ph.innerHTML=stat+'<div class="lock" aria-hidden="true"><b>12:41</b><span>Thursday</span></div><div class="note"><div class="av" aria-hidden="true">S</div><div><div class="who">Sam</div><div class="clamp">'+T[0]+'</div></div></div>';
-  card.appendChild($('button',{class:'btn main',type:'button',on:{click:()=>{S.op=1;keep();render()}}},'Open the message'));return [card,back()]}
- ph.innerHTML=stat+'<div class="chead"><div class="av" aria-hidden="true">S</div><b>Sam</b></div>';
+ if(!S.op&&S.mv===null){ph.innerHTML=stat+'<div class="lock" aria-hidden="true"><b>12:41</b><span>Thursday</span></div><div class="note"><div class="av" aria-hidden="true">S</div><div><div class="who"><b>Sam</b><span aria-hidden="true">now</span></div><div class="clamp">'+T[0]+'</div></div></div>';
+  const open=()=>{S.op=1;keep();render();landed()};ph.classList.add('tap');ph.addEventListener('click',open);
+  card.appendChild($('button',{class:'btn main',type:'button',on:{click:open}},'Open the message'));return [card,back()]}
+ ph.innerHTML=stat+'<div class="chead"><svg class="chev" width="10" height="18" viewBox="0 0 10 18" fill="none" stroke="#235A3C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.5 1.5L1.5 9l7 7.5"/></svg><div class="av" aria-hidden="true">S</div><div class="cname"><b>Sam</b><span class="sub" aria-hidden="true">online</span></div></div>';
+ const st=ph.querySelector('.sub'),day=$('div',{class:'day','aria-hidden':'true'},'Today'),TS=x=>'<span class="ts" aria-hidden="true">'+x+'</span>';
+ const comp=$('div',{class:'comp','aria-hidden':'true'},'<span class="plus"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#5A645D" stroke-width="2" stroke-linecap="round"><path d="M8 2v12M2 8h12"/></svg></span><span class="fld"><span class="phd">Message</span><span class="tx"></span></span><span class="send"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13.5v-11M3.5 7L8 2.5 12.5 7"/></svg></span>');
  const th=$('div',{class:'thread'});ph.appendChild(th);
- const bub=T.map(t=>$('div',{class:'msg'},'<span class="vh">Sam: </span>'+t));
- const mine=$('div',{class:'msg me'});mine.hidden=true;
- const qb=$('div',{class:'out'});const inner=$('div',{class:'reply'});qb.appendChild(inner);
- inner.appendChild($('h3',{},'How do you reply?'));
+ const bub=T.map(t=>$('div',{class:'msg'},'<span class="vh">Sam: </span>'+t+TS('12:41')));
+ const mine=$('div',{class:'msg me'});mine.hidden=true;const rc=$('div',{class:'rcpt',id:'rcpt',role:'status'},'');rc.hidden=true;RCEL=rc;
+ const qb=$('div',{class:'out'});qb.hidden=true; /* not reachable by keyboard until the messages have arrived */const inner=$('div',{class:'reply'});qb.appendChild(inner);
+ inner.appendChild($('h3',{},'How do you reply?'));inner.appendChild($('p',{class:'soft once'},'Choose what you would actually say. Your first response is recorded and cannot be changed.'));
  const ch=$('div',{class:'chips'});const ref=$('div',{class:'out'});
- M.forEach((m,i)=>{const b=$('button',{class:'chip',type:'button','aria-pressed':S.mv===i},m[1]);b.onclick=()=>{S.mv=i;keep();queue('before',{q1:S.q1,q2:S.q2,q3:S.q3,q4:S.q4,q5:S.q5,note:S.note,mv:S.mv});[...ch.children].forEach((c,j)=>{c.setAttribute('aria-pressed',j===i);c.disabled=j!==i});
-  mine.innerHTML='<span class="vh">You: </span>'+m[1];mine.hidden=false;
-  ref.innerHTML='<div class="refl"><h3>'+m[3]+'</h3><p>'+m[2]+'</p><p class="soft" style="font-size:14.5px">Your first reply has been saved. Let’s explore it.</p></div>';ref.classList.add('on');const nx=document.getElementById('next');if(nx)nx.disabled=false};ch.appendChild(b)});
- inner.appendChild(ch);ph.appendChild(qb);card.appendChild(ref);const n=next('Continue',()=>{queue('before',{q1:S.q1,q2:S.q2,q3:S.q3,q4:S.q4,q5:S.q5,note:S.note,mv:S.mv});go(S.step+1)});n.disabled=S.mv===null;card.appendChild(n);
- const all=()=>{th.innerHTML='';bub.forEach(b=>th.appendChild(b));th.appendChild(mine);qb.classList.add('on');S.op=2};
- const fresh=S.op===1&&S.mv===null&&!(window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches);
- if(!fresh)all();else{const ty=$('div',{class:'msg typing','aria-hidden':'true'},'<i></i><i></i><i></i>');let done=false;const ts=[];th.appendChild(ty);
+ M.forEach((m,i)=>{const b=$('button',{class:'chip sug',type:'button','aria-pressed':S.mv===i},m[1]);b.onclick=()=>{const first=S.mv===null;if(!first&&S.mv!==i)return;S.mv=i;if(first){const a={q1:S.q1,q2:S.q2,q3:S.q3,q4:S.q4,q5:S.q5,note:S.note,mv:S.mv};S.bsent=JSON.stringify(a);keep();queue('before',a)}[...ch.children].forEach((c,j)=>{c.setAttribute('aria-pressed',j===i);c.disabled=j!==i});
+  mine.innerHTML='<span class="vh">You: </span>'+m[1]+TS('12:42');mine.hidden=false;rc.hidden=false;qb.hidden=true;refresh();
+  if(first&&!RM){mine.classList.add('in');rc.classList.add('in');const f=comp.querySelector('.fld');f.querySelector('.tx').textContent=m[1];f.classList.add('go');setTimeout(()=>{f.classList.remove('go');f.querySelector('.tx').textContent=''},420)}
+  ref.innerHTML='<div class="refl"><h3 tabindex="-1">'+m[3]+'</h3><p>'+m[2]+'</p></div>';ref.classList.add('on');const nx=document.getElementById('next');if(nx)nx.disabled=false;
+  if(first){const h=ref.querySelector('h3');try{h.focus({preventScroll:true})}catch(e){}try{ref.scrollIntoView({block:'nearest',behavior:RM?'auto':'smooth'})}catch(e){}}};ch.appendChild(b)});
+ inner.appendChild(ch);ph.appendChild(qb);ph.appendChild(comp);card.appendChild(ref);const n=next('Continue',()=>{const a={q1:S.q1,q2:S.q2,q3:S.q3,q4:S.q4,q5:S.q5,note:S.note,mv:S.mv},j=JSON.stringify(a);if(j!==S.bsent){S.bsent=j;queue('before',a)} /* only if an earlier answer was changed after replying */go(S.step+1)});n.disabled=S.mv===null;card.appendChild(n);
+ const all=()=>{th.innerHTML='';th.appendChild(day);st.textContent='online';bub.forEach(b=>th.appendChild(b));th.appendChild(mine);th.appendChild(rc);qb.hidden=false;qb.classList.add('on');S.op=2};
+ const fresh=S.op===1&&S.mv===null&&!RM;
+ if(!fresh)all();else{const ty=$('div',{class:'msg typing','aria-hidden':'true'},'<i></i><i></i><i></i>');let done=false;const ts=[];th.appendChild(day);th.appendChild(ty);st.textContent='typing…';
   const fin=()=>{if(done)return;done=true;ts.forEach(clearTimeout);all()};
   bub.forEach((b,i)=>ts.push(setTimeout(()=>{if(done)return;b.classList.add('in');th.insertBefore(b,ty);if(i===bub.length-1)fin()},650+i*950)));
   ph.addEventListener('click',fin)}
  if(S.mv!==null)ch.children[S.mv].click();return [card,back()]},
-summary(){const lab=['1 of 5, not confident','2 of 5','3 of 5','4 of 5','5 of 5, very confident'];
+summary(){if(S.q2===null&&S.q4===null&&S.q5===null&&S.mv===null)return SCREENS.end(); /* shown once the reflection has been removed from this device, or has passed KEEP_DAYS */
+ const lab=['Confidence: 1 of 5, not confident','Confidence: 2 of 5','Confidence: 3 of 5','Confidence: 4 of 5','Confidence: 5 of 5, very confident'];
  const REMEMBER='Check the tool, the information and the approved purpose before sharing.';
  const txt='Your Learning to Practice reflection\nWhere you are starting: '+(S.q2!==null?lab[S.q2]:'')+'\nWhat you want to explore: '+(S.q4!==null?Q.q4[1][S.q4]:'')+'\nWhere you would like help: '+(S.q5!==null?Q.q5[1][S.q5]:'')+'\nOne thing to remember: '+REMEMBER+'\n\nThis is a personal learning reflection, not an assessment of clinical competence.';
  const card=$('div',{class:'ticket'});
- card.innerHTML='<div class="tktop"><div class="soft">Learning to Practice</div><h2 class="tkh">Your starting point</h2><p class="soft tkp">Where you are starting, before your workshop.</p>'+stampSvg('press',false)+'</div>'+
+ card.innerHTML='<div class="tktop"><div class="soft">Stop 1 of 3</div><h2 class="tkh">Your starting point</h2><p class="soft tkp">Where you are starting, before your workshop.</p>'+stamps(1,'press')+'<p class="vh">Stop 1 is stamped. Stops 2 and 3 come later.</p></div>'+
   '<div class="tkbody"><h3>Your Learning to Practice reflection</h3><dl class="sum"><dt>Where you are starting</dt><dd>'+(S.q2!==null?lab[S.q2]:'')+'</dd><dt>What you want to explore</dt><dd><span class="hl">'+(S.q4!==null?Q.q4[1][S.q4]:'')+'</span></dd><dt>Where you would like help</dt><dd>'+(S.q5!==null?Q.q5[1][S.q5]:'')+'</dd><dt>One thing to remember</dt><dd>'+REMEMBER+'</dd></dl></div>'+
-  '<div class="perf"></div><div class="tkstub"><div class="soft">Your journey code</div>'+codeLines()+'<div class="soft" style="font-size:14px">No name on it. Screenshot or note it if you might ask us to see or delete your answers. It is not included in your download.</div></div>';
+  '<div class="perf"></div><div class="tkstub"><div class="soft">Your journey code</div>'+codeLines()+'<button class="link" type="button" data-cpc>Copy journey code</button><span class="vh" role="status"></span><div class="soft" style="font-size:14px">No name on it. Screenshot or note it if you might ask us to see or delete your answers. It is not included in your download.</div></div>';
  const c2=$('div',{class:'card'});
  c2.appendChild($('p',{class:'soft'},'A personal learning reflection, not an assessment of clinical competence. Made in your browser and yours to keep.'));
+ c2.appendChild($('h3',{},'That is everything'));
+ c2.appendChild($('p',{style:'font-size:17px'},'Thank you. Your reflection is yours to keep. See you at your workshop. If you ever want us to look up or delete your answers, you will need your journey code.'));
+ c2.appendChild($('p',{class:'soft'},'At your workshop, your facilitator will share broad group themes and how they shaped the session.'));
  const row=$('div',{class:'row'});
- const save=$('button',{class:'btn main'},'Save my reflection');save.onclick=()=>{const h='<!doctype html><meta charset="utf-8"><title>My Learning to Practice reflection</title><body style="font:16px/1.5 system-ui;max-width:34em;margin:2em auto;padding:0 1em"><pre style="white-space:pre-wrap;font:inherit">'+txt.replace(/&/g,'&amp;').replace(/</g,'&lt;')+'</pre>';try{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([h],{type:'text/html'}));a.download='my-starting-point.html';a.click()}catch(e){}};
- const cp=$('button',{class:'btn'},'Copy as text');cp.onclick=()=>{const done=()=>cp.textContent='Copied';try{navigator.clipboard.writeText(txt).then(done,()=>{cp.textContent='Could not copy'})}catch(e){}};
- row.appendChild(save);row.appendChild(cp);c2.appendChild(row);if(LIVE)c2.appendChild(saveLine());
- c2.appendChild($('button',{class:'btn',on:{click:()=>go(S.step+1)}},'Continue'));return [card,c2,back()]},
+ const save=$('button',{class:'btn main',type:'button'},'Save as PDF');save.onclick=()=>{try{const u=pdfBytes([['Where you are starting',S.q2!==null?lab[S.q2]:''],['What you want to explore',S.q4!==null?Q.q4[1][S.q4]:''],['Where you would like help',S.q5!==null?Q.q5[1][S.q5]:''],['One thing to remember',REMEMBER]]);const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([u],{type:'application/pdf'}));a.download='my-starting-point.pdf';document.body.appendChild(a);a.click();setTimeout(()=>{try{URL.revokeObjectURL(a.href)}catch(e){}a.remove()},60000)}catch(e){save.textContent='Could not save. Use Copy as text.'}};
+ const cp=$('button',{class:'btn','data-dock':'',type:'button'},'Copy as text');cp.onclick=()=>{const done=()=>cp.textContent='Copied';try{navigator.clipboard.writeText(txt).then(done,()=>{cp.textContent='Could not copy'})}catch(e){}};
+ row.appendChild(save);row.appendChild(cp);c2.appendChild(row);
+ if(LIVE){const p=$('p',{class:'soft'},KEEP_DAYS?'Your reflection stays on this device for '+KEEP_DAYS+' days so you can come back to it. ':'Save or copy your reflection before you leave. It is not kept on this device after you close this page.');
+  if(KEEP_DAYS)p.appendChild($('button',{class:'link',type:'button',on:{click:()=>{Object.assign(S,{q1:null,q2:null,q3:null,q4:null,q5:null,note:'',mv:null,rate:null,f1:'',f2:'',op:0,bsent:null});keep();render();landed()}}},'Remove it now'));c2.appendChild(p)}
+ if(LIVE)c2.appendChild(saveLine());else{c2.appendChild($('p',{class:'soft'},'Prototype only: nothing you entered here was sent anywhere.'));c2.appendChild($('button',{class:'btn',type:'button',on:{click:()=>{Object.assign(S,{q1:null,q2:null,q3:null,q4:null,q5:null,note:'',mv:null,rate:null,f1:'',f2:'',op:0});go(0)}}},'Start again'))}
+ return [card,c2]},
 room(){if(LIVE){const c=$('div',{class:'card'});c.innerHTML='<h2>How the room landed</h2><p style="font-size:17px">At your workshop, your facilitator will share broad group themes and how they shaped the session.</p>';c.appendChild($('button',{class:'btn main',on:{click:()=>go(S.step+1)}},'Continue'));return [c,back()]}const MIN_GROUP=10,GROUP=(+new URLSearchParams(location.search).get('group'))||D.n,SMALL=GROUP<MIN_GROUP;if(SMALL){const c=$('div',{class:'card'});c.innerHTML='<h2>Your group is too small to show</h2><p class="soft">Fewer than '+MIN_GROUP+' people took part, so showing how colleagues answered could reveal who chose what. You still have your own record.</p>';c.appendChild($('button',{class:'btn main',on:{click:()=>go(S.step+1)}},'Continue'));return [c,back()]}const c=$('div',{class:'card'});c.innerHTML='<h2>How the room landed</h2><p class="soft">How your colleagues landed, one dot or square per person. Fictional figures.</p>';
  const wrap=$('div',{style:'display:flex;flex-direction:column;gap:18px'});c.appendChild(wrap);setTimeout(()=>{m1(wrap);m2(wrap);m3(wrap)},0);
  c.appendChild($('button',{class:'btn main',on:{click:()=>go(S.step+1)}},'Continue'));return [c,back()]},
-feedback(){const c=$('div',{class:'card'});c.innerHTML='<h2>Help us improve this short experience</h2><p class="soft">Please leave out names, patient details and other identifying information.</p><div class="chips" id="rt" role="group" aria-label="How useful was it"></div>';
+feedback(){const c=$('div',{class:'card'});c.innerHTML='<h2>Help us improve this short experience</h2><p class="soft">Please leave out names, patient details and other identifying information.</p><p class="q" id="rtq">How useful was this short experience?</p><div class="chips" id="rt" role="group" aria-labelledby="rtq"></div>';
  const rt=c.querySelector('#rt');['Very useful','Useful','Not very useful'].forEach((t,i)=>{const b=$('button',{class:'chip',type:'button','aria-pressed':S.rate===i},t);b.onclick=()=>{S.rate=i;[...rt.children].forEach((x,j)=>x.setAttribute('aria-pressed',j===i))};rt.appendChild(b)});
  [['f1','What was useful about this short experience?'],['f2','What could we make clearer?']].forEach(([k,l])=>{const id='t'+k;const t=$('textarea',{maxlength:200,id,style:'min-height:70px'},S[k]);const n=$('div',{class:'cnt'},S[k].length+' of 200');t.oninput=()=>{S[k]=t.value;n.textContent=t.value.length+' of 200'};c.appendChild($('div',{style:'display:flex;flex-direction:column;gap:6px'},[$('label',{class:'q',for:id},l+' Optional'),t,n]))});
- c.appendChild($('div',{class:'row'},[$('button',{class:'btn main',on:{click:()=>{if(S.rate!==null||S.f1||S.f2)queue('feedback',{rate:S.rate,f1:S.f1,f2:S.f2});go(S.step+1)}}},'Submit feedback'),$('button',{class:'btn',on:{click:()=>go(S.step+1)}},'Skip')]));return [c,back()]},
-end(){return [$('div',{class:'card'},[$('h2',{},'That is everything'),$('p',{style:'font-size:17px'},'Thank you. Your reflection is yours to keep. See you at your workshop. If you ever want us to look up or delete your answers, you will need your journey code.'),CODE?$('div',{class:'ticket'},'<div class="tkstub"><div class="soft">Your journey code</div>'+codeLines()+'</div>'):'',LIVE?saveLine():$('p',{class:'soft'},'Prototype only: nothing you entered here was sent anywhere.'),LIVE?'':$('button',{class:'btn',on:{click:()=>{Object.assign(S,{q1:null,q2:null,q3:null,q4:null,q5:null,note:'',mv:null,rate:null,f1:'',f2:'',op:0});go(0)}}},'Start again')])]}
+ c.appendChild($('div',{class:'row'},[$('button',{class:'btn main',on:{click:()=>{if(S.rate!==null||S.f1||S.f2)queue('feedback',{rate:S.rate,f1:S.f1,f2:S.f2});go(S.step+1)}}},'Submit feedback'),$('button',{class:'btn','data-dock':'',type:'button',on:{click:()=>go(S.step+1)}},'Skip')]));return [c,back()]},
+end(){return [$('div',{class:'card'},[$('h2',{},'That is everything'),$('p',{style:'font-size:17px'},'Thank you. Your reflection is yours to keep. See you at your workshop. If you ever want us to look up or delete your answers, you will need your journey code.'),CODE?$('div',{class:'ticket'},'<div class="tkstub"><div class="soft">Your journey code</div>'+codeLines()+'<button class="link" type="button" data-cpc>Copy journey code</button><span class="vh" role="status"></span></div>'):'',LIVE?saveLine():$('p',{class:'soft'},'Prototype only: nothing you entered here was sent anywhere.'),LIVE?'':$('button',{class:'btn',on:{click:()=>{Object.assign(S,{q1:null,q2:null,q3:null,q4:null,q5:null,note:'',mv:null,rate:null,f1:'',f2:'',op:0});go(0)}}},'Start again')])]}
 };
+document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('[data-cpc]');if(!b)return;const st=b.nextElementSibling,say=t=>{b.textContent=t;if(st)st.textContent=t};
+ const no=()=>{say('Could not copy. Press and hold the code to copy it.');try{const c=b.parentNode.querySelector('.code'),r=document.createRange();r.selectNodeContents(c);const s=getSelection();s.removeAllRanges();s.addRange(r)}catch(e){}};
+ try{navigator.clipboard.writeText(CODE).then(()=>say('Journey code copied'),no)}catch(e){no()}});
+const PDFW={H:[278,278,355,556,556,889,667,191,333,333,389,584,278,333,278,278,556,556,556,556,556,556,556,556,556,556,278,278,584,584,584,556,1015,667,667,722,722,667,611,778,722,278,500,667,556,833,722,778,667,778,722,667,611,722,667,944,667,667,611,278,278,278,469,556,333,556,556,500,556,556,278,556,556,222,222,500,222,833,556,556,556,556,333,500,278,556,500,722,500,500,500,334,260,334,584,350,556,350,222,556,333,1000,556,556,333,1000,667,333,1000,350,611,350,350,222,222,333,333,350,556,1000,333,1000,500,333,944,350,500,667,278,333,556,556,556,556,260,556,333,737,370,556,584,333,737,333,400,584,333,333,333,556,537,278,333,333,365,556,834,834,834,611,667,667,667,667,667,667,1000,722,667,667,667,667,278,278,278,278,722,722,778,778,778,778,778,584,778,722,722,722,722,667,667,611,556,556,556,556,556,556,889,500,556,556,556,556,278,278,278,278,556,556,556,556,556,556,556,584,611,556,556,556,556,500,556,500],HB:[278,333,474,556,556,889,722,238,333,333,389,584,278,333,278,278,556,556,556,556,556,556,556,556,556,556,333,333,584,584,584,611,975,722,722,722,722,667,611,778,722,278,556,722,611,833,722,778,667,778,722,667,611,722,667,944,667,667,611,333,278,333,584,556,333,556,611,556,611,556,333,611,611,278,278,556,278,889,611,611,611,611,389,556,333,611,556,778,556,556,500,389,280,389,584,350,556,350,278,556,500,1000,556,556,333,1000,667,333,1000,350,611,350,350,278,278,500,500,350,556,1000,333,1000,556,333,944,350,500,667,278,333,556,556,556,556,280,556,333,737,370,556,584,333,737,333,400,584,333,333,333,611,556,278,333,333,365,556,834,834,834,611,722,722,722,722,722,722,1000,722,667,667,667,667,278,278,278,278,722,722,778,778,778,778,778,584,778,722,722,722,722,667,667,611,556,556,556,556,556,556,889,556,556,556,556,556,278,278,278,278,611,611,611,611,611,611,611,584,611,611,611,611,611,556,611,556],TB:[250,333,555,500,500,1000,833,278,333,333,500,570,250,333,250,278,500,500,500,500,500,500,500,500,500,500,333,333,570,570,570,500,930,722,667,722,722,667,611,778,778,389,500,778,667,944,722,778,611,778,722,556,667,722,722,1000,722,722,667,333,278,333,581,500,333,500,556,444,556,444,333,500,556,278,333,556,278,833,556,500,556,556,444,389,333,556,500,722,500,500,444,394,220,394,520,350,500,350,333,500,500,1000,500,500,333,1000,556,333,1000,350,667,350,350,333,333,500,500,350,500,1000,333,1000,389,333,722,350,444,722,250,333,500,500,500,500,220,500,333,747,300,500,570,333,747,333,400,570,300,300,333,556,540,250,333,300,330,500,750,750,750,500,722,722,722,722,722,722,1000,722,667,667,667,667,389,389,389,389,722,722,778,778,778,778,778,570,778,722,722,722,722,722,611,556,500,500,500,500,500,500,722,444,444,444,444,444,278,278,278,278,500,556,500,500,500,500,500,570,500,556,556,556,556,500,556,500]};
+function pdfBytes(rows){const W=595.28,H=841.89,L=56,MAX=W-2*L,F={H:'F1',HB:'F2',TB:'F3'},MAP={'\u2018':145,'\u2019':146,'\u201C':147,'\u201D':148,'\u2013':150,'\u2014':151,'\u2026':133};
+ const enc=s=>[...String(s)].map(ch=>{const c=ch.charCodeAt(0);return String.fromCharCode(MAP[ch]||(c>=32&&c<256?c:63))}).join('');
+ const tw=(s,f,z)=>{let w=0;for(let i=0;i<s.length;i++)w+=PDFW[f][s.charCodeAt(i)-32]||556;return w*z/1000};
+ const wrap=(s,f,z)=>{const o=[];let l='';s.split(' ').forEach(w=>{const t=l?l+' '+w:w;if(l&&tw(t,f,z)>MAX){o.push(l);l=w}else l=t});if(l)o.push(l);return o};
+ const esc=s=>s.replace(/\\/g,'\\\\').replace(/\(/g,'\\(').replace(/\)/g,'\\)'),n=v=>(+v).toFixed(2);
+ const col=h=>[1,3,5].map(i=>(parseInt(h.substr(i,2),16)/255).toFixed(3)).join(' ');
+ let c='',y=H-60;
+ const text=(s,f,z,x,yy,hex)=>{c+='BT /'+F[f]+' '+z+' Tf '+col(hex)+' rg '+n(x)+' '+n(yy)+' Td ('+esc(enc(s))+') Tj ET\n'};
+ const mid=(s,f,z,cx,yy,hex)=>text(s,f,z,cx-tw(enc(s),f,z)/2,yy,hex);
+ const para=(s,f,z,hex,lead)=>wrap(enc(s),f,z).forEach(l=>{c+='BT /'+F[f]+' '+z+' Tf '+col(hex)+' rg '+n(L)+' '+n(y)+' Td ('+esc(l)+') Tj ET\n';y-=lead});
+ const circ=r=>{const k=.5523*r;return n(r)+' 0 m '+n(r)+' '+n(k)+' '+n(k)+' '+n(r)+' 0 '+n(r)+' c '+n(-k)+' '+n(r)+' '+n(-r)+' '+n(k)+' '+n(-r)+' 0 c '+n(-r)+' '+n(-k)+' '+n(-k)+' '+n(-r)+' 0 '+n(-r)+' c '+n(k)+' '+n(-r)+' '+n(r)+' '+n(-k)+' '+n(r)+' 0 c S\n'};
+ const rule=()=>{c+='q '+col('#B8BEB7')+' RG 0.8 w [2 3] 0 d '+n(L)+' '+n(y)+' m '+n(W-L)+' '+n(y)+' l S Q\n'};
+ text('Clinically Intelligent  \u00B7  Learning to Practice','H',9,L,y,'#5A645D');y-=40;
+ text('Stop 1 of 3','H',10.5,L,y,'#5A645D');y-=32;text('Your starting point','TB',28,L,y,'#1B211D');y-=22;text('Where you are starting, before your workshop.','H',11,L,y,'#5A645D');y-=58;
+ [1,2,3].forEach(i=>{const cx=L+36+(i-1)*92,on=i===1,a=on?8*Math.PI/180:0;c+='q 1 0 0 1 '+n(cx)+' '+n(y)+' cm '+n(Math.cos(a))+' '+n(Math.sin(a))+' '+n(-Math.sin(a))+' '+n(Math.cos(a))+' 0 0 cm '+col(on?'#235A3C':'#B8BEB7')+' RG '+(on?'2.4 w ':'1.3 w [3.5 3.5] 0 d ')+circ(34)+(on?'0.9 w '+circ(29.5):'');
+  mid('Stop '+i,'TB',13,0,on?1:-4,on?'#235A3C':'#6E7870');if(on)mid('stamped','HB',7.5,0,-12,'#235A3C');c+='Q\n'});
+ y-=58;rule();y-=38;text('Your Learning to Practice reflection','TB',16,L,y,'#1B211D');y-=30;
+ rows.forEach(r=>{text(r[0],'H',9.5,L,y,'#5A645D');y-=17;para(r[1],'HB',13,'#1B211D',17);y-=11});
+ y-=6;rule();y-=26;para('This is a personal learning reflection, not an assessment of clinical competence.','H',9.5,'#5A645D',13);
+ para('Made on your device on '+new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})+'. Your journey code is not included.','H',9.5,'#5A645D',13);
+ const fnt=b=>'<< /Type /Font /Subtype /Type1 /BaseFont /'+b+' /Encoding /WinAnsiEncoding >>';
+ const objs=['<< /Type /Catalog /Pages 2 0 R /Lang (en-GB) >>','<< /Type /Pages /Kids [3 0 R] /Count 1 >>','<< /Type /Page /Parent 2 0 R /MediaBox [0 0 '+W+' '+H+'] /Resources << /Font << /F1 5 0 R /F2 6 0 R /F3 7 0 R >> >> /Contents 4 0 R >>','<< /Length '+c.length+' >>\nstream\n'+c+'\nendstream',fnt('Helvetica'),fnt('Helvetica-Bold'),fnt('Times-Bold'),'<< /Title (My Learning to Practice reflection) /Producer (Clinically Intelligent) >>'];
+ let out='%PDF-1.4\n%\xE2\xE3\xCF\xD3\n';const off=[];objs.forEach((o,i)=>{off.push(out.length);out+=(i+1)+' 0 obj\n'+o+'\nendobj\n'});
+ const x=out.length;out+='xref\n0 '+(objs.length+1)+'\n0000000000 65535 f \n'+off.map(o=>String(o).padStart(10,'0')+' 00000 n \n').join('')+'trailer\n<< /Size '+(objs.length+1)+' /Root 1 0 R /Info 8 0 R >>\nstartxref\n'+x+'\n%%EOF\n';
+ const u=new Uint8Array(out.length);for(let i=0;i<out.length;i++)u[i]=out.charCodeAt(i)&255;return u}
 function qscr(k,lab){const n=next('Next',()=>go(S.step+1));n.disabled=S[k]===null;return [$('div',{class:'card'},[$('div',{class:'soft'},lab),$('h2',{},Q[k][0]),chooser(k,Q[k][1]),n]),back()]}
 if(LIVE)setTimeout(flush,0);
-if(LIVE&&INVITE&&CODE){const old=store.get(SKEY);if(old&&typeof old.step==='number'){Object.assign(S,old);S.step=Math.max(0,Math.min(STEPS.length-1,S.step))}}
-function render(){app.innerHTML='';[].concat(head(),SCREENS[STEPS[S.step]]()).forEach(e=>e&&app.appendChild(e))}
+if(LIVE&&INVITE&&CODE){const old=store.get(SKEY);if(old&&typeof old.step==='number'){Object.assign(S,old);S.step=Math.max(0,Math.min(STEPS.length-1,S.step));if(S.fin&&(!KEEP_DAYS||Date.now()-S.fin>KEEP_DAYS*864e5)){Object.assign(S,{q2:null,q4:null,q5:null});keep()}}}
+function render(){app.innerHTML='';[].concat(head(),SCREENS[STEPS[S.step]]()).forEach(e=>e&&app.appendChild(e));dock()}
+/* Back and the main action sit in one bar at the bottom of every screen, last in reading order */
+function dock(){const d=$('div',{class:'dock',id:'dock',role:'group','aria-label':'Step navigation'});
+ const bk=[...app.querySelectorAll('button.link')].find(b=>b.textContent==='Back');if(bk){bk.className='btn';bk.type='button';d.appendChild(bk)}
+ app.querySelectorAll('[data-dock]').forEach(b=>d.appendChild(b));
+ const m=app.querySelector('.btn.main');if(m)d.appendChild(m);
+ app.querySelectorAll('.row').forEach(r=>{if(!r.children.length)r.remove()});
+ if(!bk)d.setAttribute('aria-label','Actions');if(d.children.length)app.appendChild(d)}
 /* room reveals: aggregate counts only */
 function m1(w){const st=D.stats.safe,N=18;const c=$('div',{style:'display:flex;flex-direction:column;gap:10px'});
  c.innerHTML='<h3>In the safe judgement moment, how many of 18 noticed the risk but still chose the weaker move?</h3><p class="soft">One circle = one colleague.</p><svg id="ds" viewBox="0 0 360 112" role="img" aria-label="Eighteen circles, one per person taking part" width="100%"></svg><label class="soft" for="s1">Your guess: <b id="s1v" style="color:var(--ink)">9</b> of 18</label><input id="s1" type="range" min="0" max="18" value="9" style="width:100%;height:44px;accent-color:#235A3C"><button class="btn" id="b1">Lock in my guess</button><div class="out" id="o1"><p id="r1" style="font-size:17px"></p></div>';w.appendChild(c);
